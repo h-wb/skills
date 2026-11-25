@@ -12,7 +12,7 @@ nothing private is ever written here.
 ## Reach it
 
 Tools `orbit_*`, behind the tool gateway (see the `tool-gateway` skill): find them with
-`find_tool` and the keyword `orbit`. The general gateway lists them all; the private and assistant gateways only the read tools (`get_task`, `list_tasks`, `list_task_statuses`, `list_labels`, `get_me`), since a private agent must not write a general place. If you have no
+`find_tool` and the keyword `orbit`. The general gateway lists them all. The private and assistant gateways list a read-only copy, `orbit-ro_*` (`get_task`, `list_tasks`, `list_task_statuses`, `list_labels`, `get_me`), whose token cannot write: a private agent must not write a general place. If you have no
 `orbit_*` tool, say so; do not keep the task list somewhere else.
 
 Project Homelab: `01a20b1d-1555-72d7-8277-76cfb9212e3e`. A task's status comes back as an id:
