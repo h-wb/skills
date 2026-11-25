@@ -33,7 +33,7 @@ The folder is the contract: every harness reads `SKILL.md` folders natively, so 
 | Vibe | `~/.agents/skills/`, or `skill_paths` in its `config.toml` | a link per chosen skill, or `enabled_skills` |
 | The assistant (Hermes) | the folders its config lists | its skill sync copies the names it declares, at a pinned commit |
 
-On the machines and pods dotfiles sets up, it checks this repo out at a pinned commit and links the skills each place declares. The assistant's sync job in home-ops does the same with its own list.
+On the machines and pods dotfiles sets up, it follows this repo's `main` (a submodule brought up to date at every apply and every pod start) and links the skills each place declares: a merged change reaches them with nothing else to push. The assistant's sync job in home-ops copies its own list at a pinned commit, since it runs in the private scope.
 
 Anywhere else, with no dotfiles:
 
