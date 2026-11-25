@@ -1,0 +1,12 @@
+{
+  "name": "h-wb",
+  "owner": { "name": "h-wb" },
+  "description": "The skills every agent of the homelab runs, written once.",
+  "plugins": [
+    {
+      "name": "h-wb",
+      "source": "./",
+      "description": "Find pages, use the board and the tool gateway, work in the workshops."
+    }
+  ]
+}
