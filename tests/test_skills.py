@@ -3,6 +3,7 @@ import pathlib, re, unittest
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SKILLS = sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir())
+GROUPS = sorted(p for p in (ROOT / "groups").iterdir() if p.is_dir())
 
 
 def front_matter(path):
@@ -40,6 +41,25 @@ class Skills(unittest.TestCase):
             with self.subTest(folder.name):
                 _, body = front_matter(folder / "SKILL.md")
                 self.assertLessEqual(len(body.splitlines()), 90)
+
+    def test_group_names_are_lowercase_words(self):
+        self.assertTrue(GROUPS)
+        for group in GROUPS:
+            with self.subTest(group.name):
+                self.assertRegex(group.name, r"^[a-z]+$")
+
+    def test_group_entries_are_relative_links_to_skills(self):
+        # A group names skills; it never holds a copy of one.
+        for group in GROUPS:
+            entries = sorted(group.iterdir())
+            self.assertTrue(entries, f"{group.name}: empty group")
+            for entry in entries:
+                with self.subTest(f"{group.name}/{entry.name}"):
+                    self.assertTrue(entry.is_symlink())
+                    target = entry.readlink()
+                    self.assertEqual(pathlib.Path("../../skills") / entry.name, target)
+                    self.assertIn(entry.resolve(), SKILLS)
+                    self.assertTrue((entry / "SKILL.md").is_file())
 
     def test_plugin_manifests_agree(self):
         import json
