@@ -12,7 +12,7 @@ nothing private is ever written here.
 ## Reach it
 
 Tools `orbit_*`, behind the tool gateway (see the `tool-gateway` skill): find them with
-`find_tool` and the keyword `orbit`. Only the general gateway lists them. If you have no
+`find_tool` and the keyword `orbit`. The general gateway lists them all. The private and assistant gateways list only the read tools (`get_task`, `list_tasks`, `list_task_statuses`, `list_labels`, `get_me`) and send a token that cannot write: a private agent must not write a general place. If you have no
 `orbit_*` tool, say so; do not keep the task list somewhere else.
 
 Project Homelab: `01a20b1d-1555-72d7-8277-76cfb9212e3e`. A task's status comes back as an id:
@@ -24,7 +24,8 @@ Project Homelab: `01a20b1d-1555-72d7-8277-76cfb9212e3e`. A task's status comes b
 | `0defbef9ca89` | In Progress | Being worked on; at most three outcomes |
 | `0df0be67655d` | Done | |
 
-Assigned to the owner: his step. Not assigned: an agent's.
+Assigned to the owner: his step, and its description starts with "Your step" (the assistant's
+briefing finds his steps by it). Not assigned: an agent's.
 
 Labels (`orbit_list_labels` gives their ids): `handbook`, `home-ops`, `pipelines`,
 `dotfiles` for the repo the work lands in, every one that applies; `decision` for a choice
